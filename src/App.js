@@ -1,11 +1,11 @@
 //import logo from './logo.svg';
 import { useState } from 'react';
 import './App.css';
-//import About from './components/About';
+import About from './components/About';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import Alert from './components/Alert';
-//import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState('light');
@@ -40,16 +40,16 @@ function App() {
   }
   return (
     <>
-     {/* <Router> */}
+     <Router>
       <Navbar title='CryptoWrite' about='About us' mode={mode} toggledark={toggledark} style={style} />
       <Alert alert={alert}/>
-      {/* <Routes> */}
-        {/* <Route exact path="/about"  */}
-          {/* element={<About/>}/> */}
-        {/* <Route exact path="/" */}
-           <TextForm heading="Enter your text :" mode={mode} showAlert={showAlert}/>
-      {/* </Routes> */}
-      {/* </Router> */}
+      <Routes>
+        <Route exact path="/about" 
+          element={<About/>}/>
+        <Route exact path="/"
+           element={<TextForm heading="Enter your text :" mode={mode} showAlert={showAlert}/>}/>
+      </Routes>
+      </Router>
     </>
   );
 }
