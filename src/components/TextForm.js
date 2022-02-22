@@ -33,6 +33,7 @@ export default function TextForm(props) {
         let ourText = document.getElementById('myBox');
         ourText.select();
         navigator.clipboard.writeText(ourText.value);
+        document.getSelection().removeAllRanges();
         props.showAlert("Copied to Clipboard", 'success');
     }
 
@@ -44,19 +45,19 @@ export default function TextForm(props) {
                 <div className="mb-3">
                     <textarea className="form-control" value={text} onChange={handleOnChange} style={{ backgroundColor: props.mode === 'light' ? 'white' : '#425464', color: props.mode === 'light' ? 'black' : 'white' }} id="myBox" rows="8"></textarea>
                 </div>
-                <button className="btn btn-primary" onClick={handleUpClick}>Convert to UpperCase</button>
-                <button className="btn btn-primary mx-1 my-1" onClick={handleLowClick}>Convert to LowerCase</button>
-                <button className="btn btn-primary mx-1 my-1" onClick={handleToRemove}>Remove space</button>
-                <button className="btn btn-primary mx-1 my-1" onClick={copyText}>Copy Text</button>
-                <button className="btn btn-primary mx-1 my-1" onClick={clear}>ClearAll</button>
+                <button disabled={text.length === 0} className="btn btn-primary" onClick={handleUpClick}>Convert to UpperCase</button>
+                <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1" onClick={handleLowClick}>Convert to LowerCase</button>
+                <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1" onClick={handleToRemove}>Remove space</button>
+                <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1" onClick={copyText}>Copy Text</button>
+                <button disabled={text.length === 0} className="btn btn-primary mx-1 my-1" onClick={clear}>ClearAll</button>
             </div>
             <div className="container" style={{ color: props.mode === 'light' ? 'black' : 'white' }}>
                 <hr />
                 <h3>Your text summary :</h3>
                 <p>{text.split(' ').filter((element) => {return element.length !== 0}).length} words {text.length} characters</p>
-                <p>{0.008 * text.split(' ').length - 0.008} Minutes to read</p>
+                <p>{0.008 * text.split(' ').filter((element) => {return element.length !== 0}).length} Minutes to read</p>
                 <h4>Preview :</h4>
-                <p>{text === '' ? 'Enter something in textarea to preview it' : text}</p>
+                <p>{text === '' ? 'Nothing to Preview!' : text}</p>
             </div>
         </>
     )
