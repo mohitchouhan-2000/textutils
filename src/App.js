@@ -21,8 +21,21 @@ function App() {
         setAlert(null);
       }, 2000);
   }
+ 
+  // Function to remove classes
+  const removeClasses = () => {
+    document.body.classList.remove('bg-light');
+    document.body.classList.remove('bg-dark');
+    document.body.classList.remove('bg-success');
+    document.body.classList.remove('bg-danger');
+    document.body.classList.remove('bg-warning');
+    document.body.classList.remove('bg-primary');
+}
 
-  const toggledark = () => {
+ // Function to enable the dark mode
+  const toggledark = (cls) => {
+    removeClasses();
+    document.body.classList.add(`bg-${cls}`);
     if (mode === 'light') {
       setMode('dark');
       setStyle('Enable Light Mode');

@@ -21,8 +21,14 @@ export default function Navbar(props) {
             </li>
           </ul>
           <Outlet/>
+          <div className="d-flex">
+            <div className="bg-primary rounded mx-2" onClick={()=>{props.toggledark('primary')}} style={{height: '24px', width: '24px', cursor: 'pointer'}}></div>
+            <div className="bg-success rounded mx-2" onClick={()=>{props.toggledark('success')}} style={{height: '24px', width: '24px', cursor: 'pointer'}}></div>
+            <div className="bg-danger rounded mx-2" onClick={()=>{props.toggledark('danger')}} style={{height: '24px', width: '24px', cursor: 'pointer'}}></div>
+            <div className="bg-warning rounded mx-2" onClick={()=>{props.toggledark('warning')}} style={{height: '24px', width: '24px', cursor: 'pointer'}}></div>
+          </div>
           <div className={`form-check form-switch mx-3 text-${props.mode === 'light' ? 'dark' : 'light'}`}>
-            <input className="form-check-input" onClick={props.toggledark} type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+            <input className="form-check-input" style={{cursor: 'pointer'}} onClick={()=>{props.toggledark(null)}} type="checkbox" role="switch" id="flexSwitchCheckDefault" />
             <label className="form-check-label" htmlFor="flexSwitchCheckDefault">{props.style}</label>
           </div>
           <form className="d-flex">
